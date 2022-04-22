@@ -1,20 +1,45 @@
+html,body,#app{
+    height: 100%;
+    position: relative;
+}
 .van-tabbar{
     height: 80px;
 }
 .van-tabbar-item{
     height: 80px;
 }
-
+.van-field__control{
+    height: 60px;
+}
 .van-tabbar-item__icon{
     font-size: 40px!important;
+}
+.van-overlay{
+    background-color: rgba(0,0,0,0.2);
 }
 
 .van-tabs__wrap{
     height: 100px!important;
-    .van-tab__text {
-
-    }
     .van-tab__text--ellipsis{
         overflow: inherit!important;
     }
 }
+.van-cell{
+    display: flex;
+    align-items: center;
+}
+.van-field{
+    height: 80px;
+}
+
+.van-cell__title{
+    width: 120px;
+}
+.van-uploader{
+    height: 150px!important;
+    .van-uploader__upload,.van-uploader__preview-image{
+        height: 150px!important;
+        width: 150px!important;
+    }
+}
+
