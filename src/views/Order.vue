@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import request from '@/http'
+import request from "@/http";
 export default {
   data() {
     return {
@@ -15,10 +15,14 @@ export default {
       type: "",
       columns: ["游泳", "跑步", "攀岩"],
       showPicker: false,
+      query: {
+        page_size: 10,
+        page_no: 2,
+      },
     };
   },
-  mounted(){
-    request.post('/list_orders')
+  mounted() {
+    request.post("order/list_orders",this.query);
   },
   methods: {
     onSubmit(values) {

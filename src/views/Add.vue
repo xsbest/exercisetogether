@@ -12,7 +12,7 @@
       <van-field
         readonly
         clickable
-        name="startTime"
+        name="create_time"
         :value="startTime"
         label="开始时间"
         placeholder="点击选择时间"
@@ -29,7 +29,7 @@
       <van-field
         readonly
         clickable
-        name="endTime"
+        name="end_time"
         :value="endTime"
         label="结束时间"
         placeholder="点击选择时间"
@@ -44,15 +44,15 @@
       </van-popup>
 
       <van-field
-        type="digit"
-        name="peopleNums"
+        type="number"
+        name="total_number"
         v-model="peopleNums"
         label="拼单人数"
         clear
         placeholder="请输入"
       />
 
-      <van-field label="上传图片" name="uploader" style="height: 100px">
+      <van-field label="上传图片" name="file" style="height: 100px">
         <template #input>
           <van-uploader v-model="uploader" />
         </template>
@@ -88,18 +88,20 @@ export default {
   },
   methods: {
     onSubmit(values) {
-      console.log("submit", values);
-      request.post("/order/create_order", {
-        creater_id: "gag22",
-        sport_type: "swim",
-        description: "在福田区游泳馆",
-        total_number: 10,
-        order_location: "福田区",
-        longitude: 1,
-        latitude: 2,
-        create_time: 1,
-        end_time: 11,
-      });
+      // console.log("submit", values);
+      // var formdata = new FormData();
+      // formdata.append("file", values.file[0].file, "项目.png");
+      var formdata = new FormData();
+      formdata.append("file", values.file[0].file, "项目.png");
+      formdata.append("creater_id", "1");
+      formdata.append("description", "描述");
+      const options = {
+        url: "/order/create_order",
+        method: "POST",
+        headers: { "Content-Type": "multipart/form-data" },
+        data: formdata,
+      };
+      request(options);
     },
     onConfirm(value) {
       this.startTime = value;
