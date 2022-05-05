@@ -14,22 +14,27 @@
 // @ is an alias to /src
 
 export default {
-  name:'NavBar',
+  name: "NavBar",
   data: function () {
     return {
-      active: 'home',
+      active:''
     };
   },
-  methods:{
-    onChange(key){
+  watch: {
+    '$route':function () {
+      this.active = location.pathname.slice(1)
+    },
+  },
+  methods: {
+    onChange(key) {
       console.log(key);
-      this.$router.push(key)
-    }
-  }
-}
+      this.$router.push(key);
+    },
+  },
+};
 </script>
 <style scoped>
-  .home img{
-    width: 40px;
-  }
+.home img {
+  width: 40px;
+}
 </style>

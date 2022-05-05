@@ -3,21 +3,15 @@
     <van-tabs v-model="activeName">
       <van-tab title="关注" name="attention">
         <div class="row">
-          <div class="column_one column">
-            <div
-              class="box"
-              v-for="i in imgs"
-              :key="i.id"
-              @click="handleClickBox(i)"
-            >
-              <img :src="i.url" />
-              <div>项目：{{ i.type }} 区域：{{ i.area }}</div>
-            </div>
-          </div>
-          <div class="column_two column">
-            <div class="box" v-for="i in imgs" :key="i.id">
-              <img :src="i.url" />
-            </div>
+          <div
+            class="box"
+            v-for="i in orderData"
+            :key="i.order_id"
+            @click="handleClickBox(i)"
+          >
+            <img :src="i.pic_urls" />
+            <div>{{ i.sport_type }}</div>
+            <div>{{ i.location }}</div>
           </div>
         </div>
       </van-tab>
@@ -28,27 +22,24 @@
 
 <script>
 // @ is an alias to /src
+import request from "@/http";
 
 export default {
+  mounted() {
+    request.post("order/list_orders", this.query).then((res) => {
+      this.orderData = res.data.data.Value;
+    });
+  },
   data: function () {
     return {
+      orderData: [],
       a: 1,
       active: "home",
       activeName: "attention",
-      imgs: [
-        {
-          url: "https://fc1tn.baidu.com/it/u=1854775792,344415369&fm=202&src=758&fc=tdmatt&mola=new&crop=v1",
-          type: "swimming",
-          area: "深圳",
-          id: Math.random(),
-        },
-        {
-          url: "https://fc1tn.baidu.com/it/u=1854775792,344415369&fm=202&src=758&fc=tdmatt&mola=new&crop=v1",
-          type: "swimming",
-          area: "深圳",
-          id: Math.random(),
-        },
-      ],
+      query: {
+        page_size: 1000,
+        page_no: 1,
+      },
     };
   },
   methods: {
@@ -59,26 +50,26 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.home {
+  overflow: hidden;
+}
 .row {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  .column {
-    display: flex;
-    flex-direction: column;
-    .box {
-      border: 1px solid #ccc;
-      padding: 50px;
-      img {
-        width: 30vw;
-      }
+  flex-wrap: wrap;
+  .box {
+    margin: 0;
+    margin-top: -1px;
+    width: 350px;
+    margin-right: -1px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 50px;
+    img {
+      width: 30vw;
     }
-  }
-  .column_one {
-    .box {
-      transform: translateX(1px);
-    }
-    // margin-right: 80px;
   }
 }
 </style> 

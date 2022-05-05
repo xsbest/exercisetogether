@@ -41,9 +41,24 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/OrderDetail.vue')
   },
   {
+    path: '/userInfo',
+    name: 'userInfo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/userInfo.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+  },
+  {
+    path: '/talk',
+    name: 'Talk',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Talk.vue')
+  },
+  {
+    path: '/mark',
+    name: 'Mark',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Mark.vue')
   },
 ]
 
