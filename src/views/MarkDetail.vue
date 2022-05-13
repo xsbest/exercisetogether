@@ -9,14 +9,14 @@
           <div
           class="box"
             v-for="item in list"
-            :key ="item.create_time"
+            :key ="item.Evaluation.create_time"
           >
             <div class="intro">
-                <div class="name">{{item.user_id}}评论：</div>
-                <div class="time">{{new Date(item.create_time).toLocaleString()}}</div>
+                <div class="name">{{item.User.user_name}}评论：</div>
+                <div class="time">{{new Date(item.Evaluation.create_time).toLocaleString()}}</div>
             </div>
-            <div class="content">{{item.content}}</div>
-               <van-rate color="#ffd21e" class="rate-btn" :value="item.star" />
+            <div class="content">{{item.Evaluation.content}}</div>
+               <van-rate color="#ffd21e" class="rate-btn" :value="item.Evaluation.star" />
           </div>
         </div>
   </div>

@@ -18,7 +18,7 @@
       <van-tab title="发现" name="observe">发现</van-tab>
     </van-tabs>
   </div>
-</template>s
+</template>
 
 <script>
 // @ is an alias to /src

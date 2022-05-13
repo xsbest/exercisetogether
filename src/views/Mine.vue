@@ -11,7 +11,7 @@
     <van-cell title="我收到的评价" is-link to="MarkDetail"/>
     <van-cell title="我的收藏" is-link />
     <van-cell title="我的爱好" is-link />
-    <van-cell title="我的运动记录" is-link />
+    <van-cell title="我的运动记录" is-link  to="MySportHistory"/>
     <van-cell title="我的个人信息" is-link to="userInfo"/>
   </div>
 </template>

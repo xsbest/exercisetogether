@@ -68,7 +68,8 @@ export default {
               if (res.data.ret_code == 10013) {
                 return Toast.fail("登录失败，请先注册");
               }
-              localStorage.setItem("token", res.data.data);
+              localStorage.setItem("token", res.data.data.Token);
+              localStorage.setItem("user_id", res.data.data.UserId);
               Toast.success("登录成功");
               this.$router.push("/home");
             });

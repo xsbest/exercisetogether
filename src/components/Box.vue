@@ -7,8 +7,8 @@
         <span class="time">{{ time }}</span>
       </div>
     </div>
-    <div class="btns">
-      <van-button round block type="info" native-type="submit" class="btn"
+    <div class="btns" v-if="display  !== false">
+      <van-button round block type="info" @click="handleEdit" native-type="submit" class="btn"
         >
         <van-icon name="edit" /> 修改
       </van-button>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  props: ["name", "time", "url"],
+  props: ["name", "time", "url" , "display","all"],
   data: function () {
     return {};
   },

@@ -7,7 +7,8 @@
         <span class="time">{{ time }}</span>
       </div>
     </div>
-    <div class="btns">
+    
+    <div class="btns" v-if="display !== false">
       <van-button @click="mark" round block type="info" native-type="submit" class="btn1"
         ><van-icon name="more-o" /> 评价
       </van-button>
@@ -17,13 +18,13 @@
 
 <script>
 export default {
-  props: ["name", "time", "url","id"],
+  props: ["name", "time", "url","id","display","all"],
   data: function () {
     return {};
   },
   methods:{
     mark(){
-      this.$router.push({name:'Mark',params:{id:this.id}})
+      this.$router.push({name:'Mark',params:{all:this.all}})
     }
   }
 };

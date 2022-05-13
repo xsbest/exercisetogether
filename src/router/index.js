@@ -65,6 +65,11 @@ const routes = [
     name: 'MarkDetail',
     component: () => import(/* webpackChunkName: "about" */ '../views/MarkDetail.vue')
   },
+  {
+    path: '/MySportHistory',
+    name: 'MySportHistory',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MySportHistory.vue')
+  },
 ]
 
 const router = new VueRouter({

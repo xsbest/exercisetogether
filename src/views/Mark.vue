@@ -29,10 +29,15 @@
 import request from "@/http";
 
 export default {
+  mounted(){
+    this.params = this.$route.params.all
+    console.log(this.params);
+  },
   data() {
     return {
       message: "",
       score: "",
+      params: {},
     };
   },
   methods: {
@@ -40,10 +45,10 @@ export default {
       console.log(value);
       request
         .post("/evaluate/create_evaluation", {
-          evaluator_id: "8d5c3779-c94c-11ec-a032-5254009b4695",
+          evaluator_id: this.params.user_id,
           content: this.message,
           star:value.rate,
-          order_id:this.$route.params.id
+          order_id:this.params.order_id
         })
         .then((res) => {
           this.list = res.data.data;

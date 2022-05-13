@@ -1,10 +1,6 @@
 <template>
   <div class="order">
-    <van-search
-      v-model="searchKeyword"
-      input-align="center"
-      placeholder="请输入搜索关键词"
-    />
+    <div class="banner">运动记录</div>
     <!-- tabs-area -->
     <!-- LockTime: ""
         ReviewId: ""
@@ -30,7 +26,7 @@
             :name="item.sport_type"
             :time="new Date(item.create_time).toLocaleString()"
             :url="item.pic_urls"
-            :all="item"
+            :display="false"
           ></Box>
         </div>
       </van-tab>
@@ -43,7 +39,7 @@
             :time="new Date(item.create_time).toLocaleString()"
             :url="item.pic_urls"
             :id="item.order_id"
-            :all="item"
+            :display ="false"
           ></FinishedBox>
         </div>
       </van-tab>
@@ -68,10 +64,6 @@ export default {
       type: "",
       columns: ["游泳", "跑步", "攀岩"],
       showPicker: false,
-      query: {
-        page_size: 1000,
-        page_no: 1,
-      },
       orderData: [],
     };
   },
@@ -97,6 +89,14 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.banner{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size: 28px;
+    height: 80px;
+    border-bottom: 1px solid #ccc;
+}
   .boxes{
     padding: 20px;
   }

@@ -3,7 +3,7 @@
     <div class="image">
       <!-- <img :src="detail.url" alt=""> -->
       <img
-        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-683dfc7f64c6c5686f724c0ce2ca0173_1440w.jpg%3Fsource%3D172ae18b&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1654269005&t=9172993410985f166e5635fa512bb48b"
+        :src="detail.pic_urls"
         alt=""
       />
     </div>
@@ -14,12 +14,12 @@
         <div>运动：{{detail.type}}</div>
         <div>区域：{{detail.area}}</div> -->
         <div class="title">
-          <span>深圳文体中心游泳了喂~~~~~~~~~~</span>
-          <span><van-icon size="20" name="user-o" />12人</span>
+          <span>{{detail.description}}</span>
+          <span><van-icon size="20" name="user-o" />{{detail.location}}</span>
         </div>
         <div class="option">
           <span class="label">时间</span>
-          <span>2022.05.01 14:00pm - 2022.05.01 16:00pm</span>
+          <span>{{new Date(detail.create_time).toLocaleString() +' - ' + new Date(detail.create_time).toLocaleString() }}</span>
         </div>
         <div class="option">
           <span class="label">性别</span>
@@ -27,26 +27,42 @@
         </div>
         <div class="option">
           <span class="label">人数</span>
-          <span>12人</span>
+          <span>{{detail.total_number}}人</span>
         </div>
         <div class="option">
           <span class="label">剩余</span>
-          <span>6个名额</span>
+          <span>{{detail.rest_number}}人</span>
         </div>
         <div class="option">
           <span class="label">地点</span>
-          <span>深圳市南山区文体中心</span>
+          <span>{{detail.location}}</span>
         </div>
-        <van-button class="btn" type="warning">发起拼团</van-button>
+        <van-button class="btn" @click="handleClick" type="warning"
+          >参加</van-button
+        >
       </div>
     </div>
   </div>
 </template>
 <script>
+import request from "@/http";
+import { Toast } from "vant";
+
 export default {
   mounted() {
     this.detail = this.$route.params;
     console.log(this.detail);
+  },
+  methods: {
+    handleClick() {
+      request
+        .post("/order/grab_order", {
+          order_id: this.detail.order_id,
+        })
+        .then(() => {
+          Toast.success("拼团成功");
+        });
+    },
   },
   data() {
     return {
@@ -102,11 +118,11 @@ export default {
           margin-right: 50px;
         }
       }
-      .btn{
-          margin-top: 40px;
-          width: 300px;
-          height: 80px;
-          border-radius: 10px;
+      .btn {
+        margin-top: 40px;
+        width: 300px;
+        height: 80px;
+        border-radius: 10px;
       }
     }
   }
