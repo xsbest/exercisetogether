@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import { Cell, Icon, Notify, Popover, Rate, Search, Tabbar, TabbarItem } from "vant";
 import { Tab, Tabs } from "vant";
-import { Form, Field, Uploader, Picker, Popup,Button,DatetimePicker  } from "vant";
+import { Form, Field, Uploader, Picker, Popup,Button,DatetimePicker ,ContactCard } from "vant";
 Vue.use(Form);
 Vue.use(Field);
 import "./reset.less";
@@ -22,6 +22,8 @@ Vue.use(Icon);
 Vue.use(Cell);
 Vue.use(Popover);
 Vue.use(Rate);
+Vue.use(ContactCard);
+
 
 
 

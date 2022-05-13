@@ -26,18 +26,29 @@
 </template>
 
 <script>
+import request from "@/http";
+
 export default {
   data() {
     return {
       message: "",
-      score:""
+      score: "",
     };
   },
   methods: {
     onSubmit(value) {
-      if (value.password && value.username) {
-        this.$router.push("/home");
-      }
+      console.log(value);
+      request
+        .post("/evaluate/create_evaluation", {
+          evaluator_id: "8d5c3779-c94c-11ec-a032-5254009b4695",
+          content: this.message,
+          star:value.rate,
+          order_id:this.$route.params.id
+        })
+        .then((res) => {
+          this.list = res.data.data;
+          this.$router.push("/home");
+        });
     },
   },
 };
@@ -52,14 +63,14 @@ export default {
   padding: 20px;
   .rate {
     border: 0;
-    .van-rate__icon{
-     font-size: 40px;
-     width: 50px;
+    .van-rate__icon {
+      font-size: 40px;
+      width: 50px;
     }
     .van-field__control {
-  border: 0;
-  padding: 10px;
-}
+      border: 0;
+      padding: 10px;
+    }
   }
 }
 .wrap {
@@ -73,7 +84,6 @@ export default {
   display: flex;
   align-items: flex-start;
   font-size: 22px !important;
-
 }
 .van-field__control {
   border: 1px solid #eee;

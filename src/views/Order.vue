@@ -41,6 +41,7 @@
             :name="item.sport_type"
             :time="new Date(item.create_time).toLocaleString()"
             :url="item.pic_urls"
+            :id="item.order_id"
           ></FinishedBox>
         </div>
       </van-tab>

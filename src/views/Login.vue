@@ -22,23 +22,57 @@
         <van-button class="btn" round block type="info" native-type="submit"
           >登录</van-button
         >
+        <van-button
+          class="btn"
+          round
+          block
+          type="info"
+          @click="onSubmit({ username, password }, 'r')"
+          >注册</van-button
+        >
       </div>
     </van-form>
   </div>
 </template>
 
 <script>
+import request from "@/http";
+import { Toast } from "vant";
 export default {
   data() {
     return {
-        password:'',
-        username:''
+      password: "",
+      username: "",
     };
   },
   methods: {
-    onSubmit(value) {
-      if(value.password && value.username){
-          this.$router.push('/home')
+    onSubmit(value, type) {
+      if (value.password && value.username) {
+        if (type === "r") {
+          request
+            .post("/register", {
+              phone: value.username,
+              password: value.password,
+            })
+            .then(() => {
+              Toast.success("注册成功,请登录");
+            });
+          return;
+        } else {
+          request
+            .post("/login", {
+              phone: value.username,
+              password: value.password,
+            })
+            .then((res) => {
+              if (res.data.ret_code == 10013) {
+                return Toast.fail("登录失败，请先注册");
+              }
+              localStorage.setItem("token", res.data.data);
+              Toast.success("登录成功");
+              this.$router.push("/home");
+            });
+        }
       }
     },
   },
@@ -62,6 +96,7 @@ export default {
   font-size: 22px !important;
 }
 .btn {
+  margin-top: 20px;
   height: 60px;
 }
 </style>

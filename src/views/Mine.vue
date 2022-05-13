@@ -8,7 +8,7 @@
         <span>{{userData.self_description}}</span>
       </div>
     </div>
-    <van-cell title="我收到的评价" is-link />
+    <van-cell title="我收到的评价" is-link to="MarkDetail"/>
     <van-cell title="我的收藏" is-link />
     <van-cell title="我的爱好" is-link />
     <van-cell title="我的运动记录" is-link />
@@ -26,7 +26,7 @@ export default {
     };
   },
   created(){
-    request.post('/user/get_user_info',{user_id:'8d5c3779-c94c-11ec-a032-5254009b4695'}).then(res=>{
+    request.post('/user/get_user_info').then(res=>{
       this.userData = res.data.data
     })
   }
@@ -59,10 +59,11 @@ export default {
     margin-top: 20px;
   }
   span:nth-of-type(3){
-    font-size: 25px;
+    font-size: 15px;
     font-weight: normal;
-    color: rgb(194, 191, 191);
-    margin-top: 5px;
+    color: rgb(15, 12, 12);
+
+    margin-top: 15px;
   }
   
 }

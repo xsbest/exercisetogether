@@ -66,11 +66,11 @@ export default {
       mineArr: [],
       othersArr: [],
       queryParams: {
-        group_id: "1c4d54e5-9ff3-4229-aa4a-a6d2ad4cc850",
-        user_id: "db074386-c942-11ec-b30e-5254009b4695",
-        type: "single", //group 或者
+        group_id: "b60944e7-cd39-469f-9d1c-f1d6f3825884",
+        user_id: "8d5c3779-c94c-11ec-a032-5254009b4695",
+        type: "group", //group 或者
         content: this.message,
-        accepter_id: "4320494f-ca2c-11ec-b64e-5254009b4695",
+        // accepter_id: "4320494f-ca2c-11ec-b64e-5254009b4695",
       },
     };
   },

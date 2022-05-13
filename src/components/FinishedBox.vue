@@ -17,13 +17,13 @@
 
 <script>
 export default {
-  props: ["name", "time", "url"],
+  props: ["name", "time", "url","id"],
   data: function () {
     return {};
   },
   methods:{
     mark(){
-      this.$router.push('/mark')
+      this.$router.push({name:'Mark',params:{id:this.id}})
     }
   }
 };

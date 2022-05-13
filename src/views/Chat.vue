@@ -8,6 +8,10 @@
         <img :src="item.chat_head" alt="" />
         <span>{{item.user_name}}</span>
       </div>
+      <div class="box" @click="handleClick(item)" v-for="item in groupList" :key="item.group_id">
+        <img :src="item.chat_head" alt="" />
+        <span>{{item.group_name}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +23,7 @@ export default {
   data: function () {
     return {
       list: [],
+      groupList:[]
     };
   },
   methods:{
@@ -31,6 +36,11 @@ export default {
       user_id: "db074386-c942-11ec-b30e-5254009b4695",
     }).then(res=>{
       this.list = res.data.data
+    })
+      request.post("/group/get_groups_by_user_id", {
+      user_id: "db074386-c942-11ec-b30e-5254009b4695",
+    }).then(res=>{
+      this.groupList = res.data.data
     })
   },
 };

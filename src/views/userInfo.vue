@@ -70,9 +70,9 @@ export default {
     margin-top: 20px;
   }
   span:nth-of-type(3) {
-    font-size: 25px;
+    font-size: 15px;
     font-weight: normal;
-    color: rgb(194, 191, 191);
+    color: rgb(71, 71, 71);
     margin-top: 5px;
   }
 }
